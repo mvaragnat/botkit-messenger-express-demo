@@ -2,7 +2,7 @@
 
 /* Uses the slack button feature to offer a real time bot to multiple teams */
 var Botkit                = require('botkit');
-var mongoUri              = process.env.MONGOLAB_URI || 'mongodb://localhost/roundtable'
+var mongoUri              = process.env.MONGOLAB_URI || 'mongodb://localhost/demo'
 var db                    = require('../../config/db')({mongoUri: mongoUri})
 
 var controller = Botkit.facebookbot({
