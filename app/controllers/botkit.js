@@ -14,6 +14,22 @@ var controller = Botkit.facebookbot({
 
 var bot = controller.spawn({})
 
+
+//subscribe to page events
+request.post('https://graph.facebook.com/me/subscribed_apps?access_token=' + process.env.FACEBOOK_PAGE_TOKEN,
+  function(err, res, body) {
+    if (err) {
+        controller.log('Could not subscribe to page messages');
+    }
+    else {
+      controller.log('Successfully subscribed to Facebook events:', body);
+      console.log('Botkit activated')
+
+      //start ticking to send conversation messages
+      controller.startTicking()
+    }
+})
+
 console.log('botkit')
 
 // this is triggered when a user clicks the send-to-messenger plugin
