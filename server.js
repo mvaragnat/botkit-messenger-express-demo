@@ -10,9 +10,9 @@ var dotenv         = require('dotenv')
 //load environment variables,
 //either from .env files (development),
 //heroku environment in production, etc...
-dotenv.load()
+dotenv.load();
 
-app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/public'));
 
 // config files
 
@@ -21,15 +21,15 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); //for parsing url encoded
 
 // view engine ejs
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 //routes
-require('./app/routes/routes')(app)
+require('./app/routes/routes')(app);
 
 //port for Heroku
-app.set('port', (process.env.PORT || 5000))
+app.set('port', (process.env.PORT || 5000));
 
 //START ===================================================
 http.listen(app.get('port'), function(){
   console.log('listening on port ' + app.get('port'))
-})
+});
