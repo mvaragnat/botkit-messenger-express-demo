@@ -1,5 +1,5 @@
 {
-  "name": "Facebook Messenger bot with Botkit",
+  "name": "facebook_messenger_bot_with_botkit",
   "version": "0.1.0",
   "description": "Demo with Express and MongoDB",
   "main": "server.js",
@@ -10,12 +10,16 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
-    "botkit": "^0.2.0",
+    "botkit": "^0.2.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.2",
     "express": "^4.13.4",
+    "generate-function": "^2.0.0",
+    "generate-object-property": "^1.2.0",
+    "jsonpointer": "^4.0.0",
     "mongodb": "^2.1.20",
     "monkii": "^1.2.0",
-    "request": "^2.72.0"
+    "request": "^2.74.0",
+    "xtend": "^4.0.1"
   }
 }
