@@ -50,6 +50,10 @@ Change the webhook route to match your deployed domain name.
 
 You can use MongoLab add-on to add Mongo storage, they have a free tier.
 
+## Contributions & style
+Contributions are more than welcome!
+In terms of style, I use [standard style](https://github.com/feross/standard) with camelcase and brace-style disabled.
+
 ## Author
 [Matthieu Varagnat](https://twitter.com/MVaragnat)
 
