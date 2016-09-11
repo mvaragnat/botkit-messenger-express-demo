@@ -21,14 +21,11 @@ The same demo for Slack bots can be found [here](https://github.com/mvaragnat/bo
 
 There are quite a number of steps to set up a Facebook bot
 
-1) Create a Facebook page
-Add Page ID in .env file (rename the .env-demo file)
+1) Create a Facebook page. Add Page ID in .env file (rename the .env-demo file)
 
-2) Create a Facebook app
-Add App ID in .env file
+2) Create a Facebook app. Add App ID in .env file
 
-3) Add Messenger to your App, then select the Page, to generate a Page Access token
-Add Token in .env file
+3) Add Messenger to your App, then select the Page, to generate a Page Access token. Add Token in .env file
 
 4) install localtunnel to your computer, then use this command to make it available for webhooks
 ```
