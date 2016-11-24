@@ -49,6 +49,21 @@ var handler = function (obj) {
 
           controller.receiveMessage(bot, message)
         }
+        // When a user clicks on "Send to Messenger"
+        else if (facebook_message.optin ||
+                (facebook_message.postback && facebook_message.postback.payload === 'optin')) {
+          message = {
+            optin: facebook_message.optin,
+            user: facebook_message.sender.id,
+            channel: facebook_message.sender.id,
+            timestamp: facebook_message.timestamp
+          }
+
+            // save if user comes from "Send to Messenger"
+          create_user_if_new(facebook_message.sender.id, facebook_message.timestamp)
+
+          controller.trigger('facebook_optin', [bot, message])
+        }
         // clicks on a postback action in an attachment
         else if (facebook_message.postback) {
           // trigger BOTH a facebook_postback event
@@ -71,20 +86,6 @@ var handler = function (obj) {
           }
 
           controller.receiveMessage(bot, message)
-        }
-        // When a user clicks on "Send to Messenger"
-        else if (facebook_message.optin) {
-          message = {
-            optin: facebook_message.optin,
-            user: facebook_message.sender.id,
-            channel: facebook_message.sender.id,
-            timestamp: facebook_message.timestamp
-          }
-
-            // save if user comes from "Send to Messenger"
-          create_user_if_new(facebook_message.sender.id, facebook_message.timestamp)
-
-          controller.trigger('facebook_optin', [bot, message])
         }
         // message delivered callback
         else if (facebook_message.delivery) {
