@@ -5,7 +5,6 @@
 var Botkit = require('botkit')
 var mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/botkit-demo'
 var db = require('../../config/db')({mongoUri: mongoUri})
-var request = require('request')
 
 var controller = Botkit.facebookbot({
   debug: true,
@@ -16,42 +15,15 @@ var controller = Botkit.facebookbot({
 
 var bot = controller.spawn({})
 
-// subscribe to page events
-request.post('https://graph.facebook.com/me/subscribed_apps?access_token=' + process.env.FACEBOOK_PAGE_TOKEN,
-  function (err, res, body) {
-    if (err) {
-      controller.log('Could not subscribe to page messages')
-    }
-    else {
-      controller.log('Successfully subscribed to Facebook events:', body)
-      console.log('Botkit activated')
+// SETUP
+require('./facebook_setup')(controller)
 
-      // start ticking to send conversation messages
-      controller.startTicking()
-    }
-  }
-)
-
-console.log('botkit')
-
-// this is triggered when a user clicks the send-to-messenger plugin
-controller.on('facebook_optin', function (bot, message) {
-  bot.reply(message, 'Welcome, friend')
-})
-
-// user said hello
-controller.hears(['hello'], 'message_received', function (bot, message) {
-  bot.reply(message, 'Hey there.')
-})
-
-// user says anything else
-controller.hears('(.*)', 'message_received', function (bot, message) {
-  bot.reply(message, 'you said ' + message.match[1])
-})
+// Conversation logic
+require('./conversations')(controller)
 
 // this function processes the POST request to the webhook
 var handler = function (obj) {
-  controller.debug('GOT A MESSAGE HOOK')
+  controller.debug('Message received from FB')
   var message
   if (obj.entry) {
     for (var e = 0; e < obj.entry.length; e++) {
